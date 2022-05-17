@@ -20,8 +20,12 @@
   },
   "prettier": {
     "trailingComma": "es5",
+    "printWidth": 80,
+    "useTabs": true,
+    "bracketSpacing": true,
+    "arrowParens": "avoid",
+    "semi": true,
     "tabWidth": 4,
-    "semi": false,
     "singleQuote": true
   }
 }
