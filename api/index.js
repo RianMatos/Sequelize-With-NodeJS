@@ -1,16 +1,12 @@
 const  express = require('express')
 const bodyParser =require('body-parser')
+const routes = require('./routes')
 
 const app = express()
 
-app.use(bodyParser.json())
+routes(app)
 
 const port = 3000
-
-app.get('/', (req,res) =>{
-    res.status(200)
-    .send({message:  'Welcome'})
-})
 
 app.listen(port, () => console.log(`Server running on port ${port}`))
 
