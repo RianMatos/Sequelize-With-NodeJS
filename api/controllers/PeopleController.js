@@ -47,7 +47,7 @@ class PeopleController{
             await database.Pessoas.destroy({where: { id: Number(id) } });
             return res.status(200).json('Deleted');
         } catch (error) {
-            return res.status(500).json(error.message);
+            return res.status(404).json(error.message);
         }
     }
 
@@ -74,6 +74,33 @@ class PeopleController{
             return res.status(500).json(error.message);
         }
     }
+
+    static async updateRegistration(req, res){
+        const body = req.body;
+        const { studentId, registrationId } = req.params;
+        try {
+            await database.Matriculas.update(body, {where:
+                 {id: Number(registrationId), estudante_id: Number(studentId)}
+                });
+            const updatedRegistration = await database.Matriculas.findOne({where:
+                {id: Number(registrationId), estudante_id: Number(studentId)}
+               })
+            return res.status(200).json(updatedRegistration);
+        } catch (error) {
+            return res.status(500).json(error.message);
+        }
+    }
+
+    static async deleteRegistration(req, res){
+        const { id } = req.params;
+        try {
+            await database.Matriculas.destroy({where: { id: Number(id) } });
+            return res.status(200).json('Deleted');
+        } catch (error) {
+            return res.status(404).json(error.message);
+        }
+    }
+
 }
 
 module.exports = PeopleController
