@@ -63,6 +63,17 @@ class PeopleController{
             return res.status(404).json(error.message);
         }
     }
+
+    static async registrationCreate(req, res){
+        const { studentId } = req.params;
+        const newRegistration = {...req.body, estudante_id: Number(studentId)};
+        try {
+            const createdNewRegistration = await database.Matriculas.create(newRegistration);
+            return res.status(201).json(createdNewRegistration);
+        } catch (error) {
+            return res.status(500).json(error.message);
+        }
+    }
 }
 
 module.exports = PeopleController

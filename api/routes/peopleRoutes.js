@@ -6,6 +6,7 @@ router.get('/people', PeopleController.getPeople);
 router.get('/people/:id', PeopleController.getPersonById);
 router.get('/people/:studentId/registration/:registrationId', PeopleController.getRegistration);
 router.post('/people', PeopleController.createPerson);
+router.post('/people/:studentId/registration', PeopleController.registrationCreate)
 router.put('/people/:id', PeopleController.updatePerson);
 router.delete('/people/:id', PeopleController.deletePerson);
 
