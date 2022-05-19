@@ -1,9 +1,18 @@
 const database = require('../models');
 
 class PeopleController{
+    static async getPeopleActive(req, res){
+        try {
+            const allPeopleActive = await database.Pessoas.findAll()
+            return res.status(200).json(allPeopleActive);
+        } catch (error) {
+            return res.status(500).json(error.message);
+        }
+    }
+
     static async getPeople(req, res){
         try {
-            const allPeople = await database.Pessoas.findAll()
+            const allPeople = await database.Pessoas.scope('all').findAll()
             return res.status(200).json(allPeople);
         } catch (error) {
             return res.status(500).json(error.message);

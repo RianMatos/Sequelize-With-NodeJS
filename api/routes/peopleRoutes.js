@@ -2,6 +2,7 @@ const{ Router } = require('express');
 const PeopleController = require('../controllers/PeopleController.js');
 const router = Router();
 
+router.get('/peopleActive', PeopleController.getPeopleActive);
 router.get('/people', PeopleController.getPeople);
 router.get('/people/:id', PeopleController.getPersonById);
 router.get('/people/:studentId/registration/:registrationId', PeopleController.getRegistration);
