@@ -51,6 +51,16 @@ class PeopleController{
         }
     }
 
+    static async restorePerson(req, res){
+        const { id } = req.params;
+        try {
+            await database.Pessoas.restore({where: {id: Number(id)}});
+            return res.status(200).json('Restored');
+        } catch (error) {
+            return res.status(404).json(error.message);
+        }
+    }
+
     static async getRegistration(req, res){
         const { studentId, registrationId } = req.params;
         try {
