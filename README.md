@@ -1,4 +1,4 @@
-# ORM-with-NodeJS
+# Sequelize-with-NodeJS
 
 ## Environment Requirement
 
