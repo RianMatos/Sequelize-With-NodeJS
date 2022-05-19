@@ -83,6 +83,17 @@ class PeopleController{
         }
     }
 
+    static async getRegistrationWithStatusConfirmed(req, res){
+        const { studentId } = req.params;
+        try {
+            const student = await database.Pessoas.findOne({where: { id: Number(studentId) } });
+            const registrations = await student.getAulasMatriculadas();
+            return res.status(200).json(registrations);
+        } catch (error) {
+            return res.status(500).json(error.message);
+        }
+    }
+
     static async registrationCreate(req, res){
         const { studentId } = req.params;
         const newRegistration = {...req.body, estudante_id: Number(studentId)};
@@ -119,7 +130,6 @@ class PeopleController{
             return res.status(404).json(error.message);
         }
     }
-
 }
 
 module.exports = PeopleController
